@@ -1,0 +1,25 @@
+{
+  "name": "are-you-paying-attention",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marinelic/Blocks-Gutenberg-and-React.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marinelic/Blocks-Gutenberg-and-React/issues"
+  },
+  "homepage": "https://github.com/Marinelic/Blocks-Gutenberg-and-React#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "^16.1.4"
+  }
+}
