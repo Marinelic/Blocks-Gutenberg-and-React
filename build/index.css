@@ -1,8 +1,25 @@
 .paying-attention-edit-block {
   padding: 20px;
   border-radius: 2px;
-  border: 1px solid orange;
-  background-color: yellow;
+  border: 1px blue;
+  background-color: lightblue;
+}
+.paying-attention-edit-block .mark-as-correct {
+  color: red;
+  position: relative;
+  top: -3px;
+  transition: transform 0.3s ease-out;
+}
+.paying-attention-edit-block .mark-as-correct:hover {
+  transform: scale(1.25) rotate(12deg);
+}
+.paying-attention-edit-block .attention-delete {
+  color: forestgreen;
+  position: relative;
+  top: -5px;
+}
+.paying-attention-edit-block .attention-delete:hover {
+  color: green !important;
 }
 
 /*# sourceMappingURL=index.css.map*/
