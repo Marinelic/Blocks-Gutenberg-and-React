@@ -7,8 +7,8 @@ wp.blocks.registerBlockType("ourplugin/are-you-paying-atteintion", {
  icon: "smiley",
  category: "common",
  attributes: {
-    skyColor: {type: "string"},
-    grassColor: {type: "string"}
+    question: {type: "string"},
+    answers: {type: "array", default: ["red", "blue"]}
  },
  edit: EditComponent,
  save: function (props) {
@@ -17,21 +17,20 @@ wp.blocks.registerBlockType("ourplugin/are-you-paying-atteintion", {
 })
 
 function EditComponent (props) {
-  function updateSkyColor(event) {
-    props.setAttributes({skyColor: event.target.value})
-  }
 
-  function updateGrassColor(event) {
-    props.setAttributes({grassColor: event.target.value})
+  function updateQuestion(value) {
+    props.setAttributes({question: value})
   }
 
   return (
    <div className="paying-attention-edit-block">
-      <TextControl label="Question:" style={{fontSize: "20px"}} />
+      <TextControl label="Question:" value={props.attributes.question} onChange={updateQuestion} style={{fontSize: "20px"}} />
       <p style={{fontSize: "13px", margin: "20px o 8px 0"}}>Answers: </p>
-      <Flex>
+      {props.attributes.answers.map(function (answer) {
+        return (
+          <Flex>
         <FlexBlock>
-          <TextControl />
+          <TextControl value={answer}/>
         </FlexBlock>
         <FlexItem>
           <Button>
@@ -42,6 +41,8 @@ function EditComponent (props) {
           <Button isLink className="attention-delete">Delete</Button>
         </FlexItem>
       </Flex>
+        )
+      })}
       <Button isPrimary>Add another answer</Button>
    </div>
   )
