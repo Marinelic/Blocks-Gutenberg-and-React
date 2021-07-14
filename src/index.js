@@ -22,15 +22,26 @@ function EditComponent (props) {
     props.setAttributes({question: value})
   }
 
+  function deleteAnswer(indexToDelete) {
+    const newAnswers = props.attributes.answers.filter(function(x, index) {
+      return index != indexToDelete
+    })
+    props.setAttributes({answers: newAnswers})
+  }
+
   return (
    <div className="paying-attention-edit-block">
       <TextControl label="Question:" value={props.attributes.question} onChange={updateQuestion} style={{fontSize: "20px"}} />
       <p style={{fontSize: "13px", margin: "20px o 8px 0"}}>Answers: </p>
-      {props.attributes.answers.map(function (answer) {
+      {props.attributes.answers.map(function (answer, index) {
         return (
           <Flex>
         <FlexBlock>
-          <TextControl value={answer}/>
+          <TextControl value={answer} onChange={newValue => {
+            const newAnswers = props.attributes.answers.concat([])
+            newAnswers[index] = newValue
+            props.setAttributes({answers: newAnswers})
+          }} />
         </FlexBlock>
         <FlexItem>
           <Button>
@@ -38,12 +49,14 @@ function EditComponent (props) {
           </Button>
         </FlexItem>
         <FlexItem>
-          <Button isLink className="attention-delete">Delete</Button>
+          <Button isLink className="attention-delete" onClick={() => deleteAnswer(index)}>Delete</Button>
         </FlexItem>
       </Flex>
         )
       })}
-      <Button isPrimary>Add another answer</Button>
+      <Button isPrimary onClick={() => {
+        props.setAttributes({answers: props.attributes.answers.concat([""])})
+      }} >Add another answer</Button>
    </div>
   )
 }
